@@ -1,0 +1,11 @@
+.course-info {
+  margin-top: 12px;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.expanded .course-side {
+  opacity: 1;
+  transform: translateY(0);
+}

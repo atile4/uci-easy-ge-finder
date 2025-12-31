@@ -1,0 +1,51 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;     /* remove if you don’t want vertical centering */
+  padding: 1rem;           /* spacing on small screens */
+}
+
+.container {
+  width: 100%;
+  max-width: 320px;        /* prevents stretching */
+  padding: 1rem;           /* internal spacing */
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: #e6f7ec;          /* light green */
+  color: #31a169;                     /* dark green text */
+  border: 2px solid #3fd289;          /* outline */
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 1rem; 
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+/* Hover state */
+.btn:hover {
+  background-color: #c9f0da;
+  color: #145c3a;
+  border-color: #145c3a;
+}
+
+/* Active (clicked) state */
+.btn:active {
+  background-color: #9ee6c4;
+  border-color: #0f4d2e;
+  transform: scale(0.97);
+}
+
+/* Optional: focus state for accessibility */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.3);
+}

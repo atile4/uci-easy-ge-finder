@@ -1,6 +1,6 @@
 # UCI Easy GE Finder
 
-Helps UCI undergraduate students find easy General Education Courses to take for their Bachelor's degree.
+Helps UCI undergraduate students find easy General Education Courses to take for their Bachelor's degree requirement.
 
 ### This project is currently in beta. Features are limited, and errors WILL pop up.
 

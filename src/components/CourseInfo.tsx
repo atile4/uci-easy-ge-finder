@@ -1,16 +1,17 @@
-import { responseGrade } from "../types";
-import { useFetch } from "../hooks/useFetch";
+import { responseGrades } from "../types";
+// import { useFetch } from "../hooks/useFetch";
+import { useGradeFetch } from "../hooks/useGradeFetch"
 
 type CourseID = {
   department : string
   number : string
 };
 
-const url = "https://anteaterapi.com/v2/rest"
+const url = "https://anteaterapi.com/v2/rest/grades/aggregateByCourse?"
 
 export default function CourseInfo({ department, number } : CourseID) {
   
-  const { data, isPending, error} = useFetch<responseGrade | null>(`${url}/grades/aggregateByCourse?courseNumber=${number}&department=${department}`) 
+  const { data, isPending, error} = useGradeFetch<responseGrades | null>(`${url}courseNumber=${number}&department=${department}`) 
   
   const info = data?.data[0];
   

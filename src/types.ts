@@ -1,8 +1,20 @@
 export type response = {
   ok: boolean;
   data: {
+    items : any;
+  };
+}
+
+export type responseCourses = {
+  ok: boolean;
+  data: {
     items: Course[];
   };
+}
+
+export type responseGrades = {
+  ok: boolean;
+  data: GradeData[];
 }
 
 //GE List Types
@@ -23,18 +35,10 @@ export type Submit = {
   setSelectedGE: (value: string) => void;
 };
 
-export type responseGrade = { 
-  ok: boolean; 
-  data: {
+export type GradeData = { 
     averageGPA: number; 
     courseNumber: string;
     department: string;
-    // gradeACount: string;
-    // gradeBCount: string; 
-    // gradeCCount: string; 
-    // gradeDCount: string; 
-    // gradeFCount: string; 
-
     gradeACount: number;
     gradeBCount: number; 
     gradeCCount: number; 
@@ -43,6 +47,4 @@ export type responseGrade = {
     gradeNPCount?: number;
     gradePCount?: number;
     gradeWCount?: number;
-
-  }[]; 
 }

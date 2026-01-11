@@ -1,27 +1,31 @@
-import './App.css';
-import ButtonAppBar from './components/Appbar';
-import Home from './pages/Home';
+// import "./styles/App.css";
+import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import SignIn from "./pages/Signup";
+import Login from "./pages/Login";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./styles/theme";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
   const { authIsReady, user } = useAuthContext();
   return (
-    
     <div className="App">
-      {authIsReady && <BrowserRouter>
-          <ButtonAppBar />
-          <Routes>
-            <Route path="/" element={user ? <Home /> : <Navigate to="/login"/>}/>
-            <Route path="signup" element={<Signup />}/>
-            <Route path="login" element={user ? <Navigate to="/"/>: <Login />}/>
-          </Routes>
-      </BrowserRouter>}
-      
-
+      {authIsReady && (
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<SignIn />} />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/dashboard" />}
+              />
+              <Route path="/dashboard" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </ThemeProvider>
+      )}
     </div>
   );
 }

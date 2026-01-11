@@ -5,7 +5,7 @@
 // import { Search, Filter, Menu, LogOut } from "lucide-react";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchJson } from "../hooks/useFetch";
+import { useFetch as fetchData } from "../hooks/useFetch";
 
 // React
 import { useState } from "react";
@@ -17,8 +17,6 @@ import SearchParam from "../components/SearchParam";
 import { initialFilter } from "../helpers/searchParamHelpers";
 
 import {
-  // AppBar,
-  // Toolbar,
   // Typography,
   // IconButton,
   // Avatar,
@@ -34,20 +32,13 @@ import ResultsList from "../components/ResultsList";
 const url = "https://anteaterapi.com/v2/rest/grades/raw";
 
 export default function Home() {
-  // const [selectedGE, setSelectedGE] = useState<string | null>(null);
-  // const { data, isPending, error } = useFetch<response | null>(
-  //   selectedGE ? url + selectedGE : null
-  // );
-  // const { data, isPending } = useFetch<Response | null>( // , isPending, error
-  //   "https://anteaterapi.com/v2/rest/grades/raw"
-  // );
   const {
     data: response,
     isLoading,
     error,
   } = useQuery({
     queryKey: ["apiData", url],
-    queryFn: () => fetchJson<Response>(url),
+    queryFn: () => fetchData<Response>(url),
     enabled: !!url,
   });
 

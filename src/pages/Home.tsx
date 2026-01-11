@@ -14,8 +14,7 @@ import { useState } from "react";
 import TopBar from "../components/TopBar";
 import SearchParam from "../components/SearchParam";
 
-// Types
-// import type { Response } from "../types";
+import { initialFilter } from "../helpers/searchParamHelpers";
 
 import {
   // AppBar,
@@ -52,24 +51,12 @@ export default function Home() {
     enabled: !!url,
   });
 
-  // const courses = data?.data.items;
   const theme = useTheme();
-
-  const initialFilter = {
-    geCategory: "",
-    ABRatio: 0,
-    timeFrame: "",
-    department: "",
-    multipleGE: false,
-  };
-
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState(initialFilter);
 
   return (
-    // <>
-
     <Box
       sx={{
         minHeight: "100vh",
@@ -99,6 +86,5 @@ export default function Home() {
         {error && <p>{error.message}</p>}
       </Box>
     </Box>
-    // </>
   );
 }

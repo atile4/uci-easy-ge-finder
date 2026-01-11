@@ -13,7 +13,6 @@ export const fullFilter = (
   filteredData = filterByGE(filteredData, GE);
   filteredData = filterByDep(filteredData, dep);
   filteredData = hasOverlap ? filterByOverlap(filteredData) : filteredData;
-  // console.log(filteredData);
   filteredData = filterByRatio(filteredData, ABRatio);
 
   if (year === "all") {
@@ -104,9 +103,9 @@ export const groupDataWithoutYear = (data: (CourseData | null)[]) => {
 
         acc[key].gradeACount += c.gradeACount;
         acc[key].gradeBCount += c.gradeBCount;
-        acc[key].gradeCCount += c.gradeBCount;
-        acc[key].gradeDCount += c.gradeBCount;
-        acc[key].gradeFCount += c.gradeBCount;
+        acc[key].gradeCCount += c.gradeCCount;
+        acc[key].gradeDCount += c.gradeDCount;
+        acc[key].gradeFCount += c.gradeFCount;
 
         acc[key].gpaSum += c.averageGPA;
         acc[key].gpaCount += 1;
@@ -119,9 +118,9 @@ export const groupDataWithoutYear = (data: (CourseData | null)[]) => {
     geCategories: g.geCategories,
     gradeACount: g.gradeACount,
     gradeBCount: g.gradeBCount,
-    gradeCCount: g.gradeBCount,
-    gradeDCount: g.gradeBCount,
-    gradeFCount: g.gradeBCount,
+    gradeCCount: g.gradeCCount,
+    gradeDCount: g.gradeDCount,
+    gradeFCount: g.gradeFCount,
     averageGPA: g.gpaSum / g.gpaCount,
   }));
 };
@@ -148,6 +147,9 @@ export const groupData = (data: (CourseData | null)[]) => {
 
             gradeACount: number;
             gradeBCount: number;
+            gradeCCount: number;
+            gradeDCount: number;
+            gradeFCount: number;
 
             gpaSum: number;
             gpaCount: number;
@@ -169,6 +171,9 @@ export const groupData = (data: (CourseData | null)[]) => {
 
             gradeACount: 0,
             gradeBCount: 0,
+            gradeCCount: 0,
+            gradeDCount: 0,
+            gradeFCount: 0,
 
             gpaSum: 0,
             gpaCount: 0,
@@ -177,6 +182,9 @@ export const groupData = (data: (CourseData | null)[]) => {
 
         acc[key].gradeACount += c.gradeACount;
         acc[key].gradeBCount += c.gradeBCount;
+        acc[key].gradeCCount += c.gradeCCount;
+        acc[key].gradeDCount += c.gradeDCount;
+        acc[key].gradeFCount += c.gradeFCount;
 
         acc[key].gpaSum += c.averageGPA;
         acc[key].gpaCount += 1;
@@ -190,6 +198,9 @@ export const groupData = (data: (CourseData | null)[]) => {
     geCategories: g.geCategories,
     gradeACount: g.gradeACount,
     gradeBCount: g.gradeBCount,
+    gradeCCount: g.gradeCCount,
+    gradeDCount: g.gradeDCount,
+    gradeFCount: g.gradeFCount,
     averageGPA: g.gpaSum / g.gpaCount,
   }));
 };

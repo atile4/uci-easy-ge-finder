@@ -22,7 +22,11 @@ import { Search } from "lucide-react";
 
 import type { SearchParamType } from "../types";
 
-import { geCategories, departments } from "../helpers/searchParamHelpers";
+import {
+  geCategories,
+  departments,
+  initialFilter,
+} from "../helpers/searchParamHelpers";
 
 export default function SearchParam({
   searchQuery,
@@ -154,15 +158,7 @@ export default function SearchParam({
           </Grid>
 
           <Button
-            onClick={() =>
-              setFilters({
-                geCategory: "",
-                ABRatio: 0,
-                timeFrame: "",
-                department: "",
-                multipleGE: false,
-              })
-            }
+            onClick={() => setFilters(initialFilter)}
             color="primary"
             sx={{ mt: 2 }}
           >

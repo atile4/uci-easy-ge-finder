@@ -1,3 +1,11 @@
+export const initialFilter = {
+  geCategory: "",
+  ABRatio: 0,
+  timeFrame: "",
+  department: "",
+  multipleGE: false,
+};
+
 export const geCategories: Record<string, string> = {
   "GE-1A": "Ia. Writing 1A",
   "GE-1B": "Ib. Writing 1B",

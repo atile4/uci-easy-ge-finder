@@ -19,7 +19,6 @@ import { initialFilter } from "../helpers/searchParamHelpers";
 import {
   // Typography,
   // IconButton,
-  // Avatar,
   Box,
   // Button,
   // TextField,
@@ -72,7 +71,13 @@ export default function Home() {
           filters={filters}
           setFilters={setFilters}
         />
-        {response && <ResultsList data={response} filters={filters} />}
+        {response && (
+          <ResultsList
+            data={response}
+            filters={filters}
+            searchQuery={searchQuery}
+          />
+        )}
         {isLoading && <p>Loading data...</p>}
         {error && <p>{error.message}</p>}
       </Box>

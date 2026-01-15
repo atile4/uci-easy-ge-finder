@@ -9,7 +9,5 @@ Helps UCI undergraduate students find easy General Education Courses to take for
 ### ⚠️This project is currently being developed. Features are limited, and errors WILL pop up.
 
 ## Known Issues
-- When fetching course information, the box displays the wrong loading message
-- Average GPA's per course aren't rounded
-- The side menu button don't work at all.
-- Course data can only be displayed individually.
+- Inputting a sesarch query doesn't do anything
+- No loading between filter changes

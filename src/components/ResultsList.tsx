@@ -8,11 +8,13 @@ import { fullFilter } from "../scripts/script";
 type ResultListType = {
   data: Response | undefined;
   filters: FilterParams;
+  searchQuery: string;
 };
 
 export default function ResultsList({
   data: response,
   filters,
+  searchQuery,
 }: ResultListType) {
   if (!response?.ok) {
     return;
@@ -31,7 +33,8 @@ export default function ResultsList({
     department,
     timeFrame,
     multipleGE,
-    ABRatio
+    ABRatio,
+    searchQuery
   );
 
   if (!filteredData) return;
@@ -56,18 +59,18 @@ export default function ResultsList({
         </Paper>
       ) : (
         <Grid container spacing={3}>
-          {filteredData.map((course) => (
-            <Grid
-              sx={{ xs: 12, lg: 6 }}
-              key={course.courseNumber + course.department}
-            >
-              <CourseCard
-                course={course}
-                // isSaved={savedCourseIds.includes(course.id)}
-                // onToggleSave={toggleSaveCourse}
-              />
-            </Grid>
-          ))}
+          {filteredData.map((course) => {
+            if (course) {
+              return (
+                <Grid
+                  sx={{ xs: 12, lg: 6 }}
+                  key={course.courseNumber + course.department}
+                >
+                  <CourseCard course={course} />
+                </Grid>
+              );
+            }
+          })}
         </Grid>
       )}
     </>

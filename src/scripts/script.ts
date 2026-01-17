@@ -6,9 +6,10 @@ export const fullFilter = (
   dep: string,
   year: string,
   hasOverlap: boolean,
-  ABRatio: number
+  ABRatio: number,
+  searchQuery: string
 ) => {
-  let filteredData = filterByGE(data, GE);
+  let filteredData = searchQuery ? filterByQuery(data, searchQuery) : [...data];
 
   filteredData = filterByGE(filteredData, GE);
   filteredData = filterByDep(filteredData, dep);
@@ -23,6 +24,18 @@ export const fullFilter = (
   }
 
   return filteredData;
+};
+
+export const filterByQuery = (data: (CourseData | null)[], query: string) => {
+  return data?.filter((course) => {
+    //@TODO search logic here
+    if (course) {
+      const lower_course = (
+        course.department + course.courseNumber
+      ).toLowerCase();
+      return lower_course.includes(query);
+    }
+  });
 };
 
 export const filterByGE = (data: (CourseData | null)[], GE: string) => {

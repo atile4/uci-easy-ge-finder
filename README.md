@@ -10,6 +10,4 @@ Helps UCI undergraduate students find easy General Education Courses to take for
 ### ⚠️This project is currently being developed. Features are limited, and errors WILL pop up.
 
 ## Known Issues
-- Inputting a sesarch query doesn't do anything
-- No loading between filter changes
 - UI freezes while the course cards are being loaded

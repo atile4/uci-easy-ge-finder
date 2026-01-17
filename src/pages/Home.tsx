@@ -1,29 +1,21 @@
-// import { useFetch } from "../hooks/useFetch";
-// import { filterByGE } from "../scripts/script";
-// import type { Response, CourseData } from "../types";
-// import { useAuthContext } from "../hooks/useAuthContext";
-// import { Search, Filter, Menu, LogOut } from "lucide-react";
-
 import { useQuery } from "@tanstack/react-query";
 import { useFetch as fetchData } from "../hooks/useFetch";
 
 // React
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 // Components
 import TopBar from "../components/TopBar";
 import SearchParam from "../components/SearchParam";
 
-import { initialFilter } from "../helpers/searchParamHelpers";
+// Hooks
+import { useTransition } from "react";
 
-import {
-  // Typography,
-  // IconButton,
-  Box,
-  // Button,
-  // TextField,
-  useTheme,
-} from "@mui/material";
+// Misc
+import { initialFilter } from "../helpers/searchParamHelpers";
+import type { FilterParams } from "../types";
+
+import { Box, useTheme } from "@mui/material";
 import type { Response } from "../types";
 import ResultsList from "../components/ResultsList";
 // import MenuIcon from "@mui/icons-material/Menu";
@@ -46,6 +38,20 @@ export default function Home() {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState(initialFilter);
 
+  const [isPending, startTransition] = useTransition();
+
+  const updateSearchQuery = useCallback((value: string) => {
+    startTransition(() => {
+      setSearchQuery(value);
+    });
+  }, []);
+
+  const updateFilters = useCallback((value: FilterParams) => {
+    startTransition(() => {
+      setFilters(value);
+    });
+  }, []);
+
   return (
     <Box
       sx={{
@@ -65,17 +71,18 @@ export default function Home() {
       >
         <SearchParam
           searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          setSearchQuery={updateSearchQuery}
           showFilters={showFilters}
           setShowFilters={setShowFilters}
           filters={filters}
-          setFilters={setFilters}
+          setFilters={updateFilters}
         />
         {response && (
           <ResultsList
             data={response}
             filters={filters}
             searchQuery={searchQuery}
+            isPending={isPending}
           />
         )}
         {isLoading && <p>Loading data...</p>}

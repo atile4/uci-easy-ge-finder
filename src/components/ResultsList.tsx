@@ -1,50 +1,68 @@
 import CourseCard from "./CourseCard";
-import { Typography, Paper, Grid } from "@mui/material";
+import { Typography, Paper, Grid, Box } from "@mui/material";
 
 import type { CourseData, FilterParams, Response } from "../types";
 
 import { fullFilter } from "../scripts/script";
+import { useMemo } from "react";
+
+import { CircularProgress } from "@mui/material";
 
 type ResultListType = {
   data: Response | undefined;
   filters: FilterParams;
   searchQuery: string;
+  isPending: boolean;
 };
 
 export default function ResultsList({
   data: response,
   filters,
   searchQuery,
+  isPending,
 }: ResultListType) {
-  if (!response?.ok) {
-    return;
-  }
+  const filteredData: (CourseData | null)[] = useMemo(() => {
+    return fullFilter(
+      response?.data,
+      filters.geCategory,
+      filters.department,
+      filters.timeFrame,
+      filters.multipleGE,
+      filters.ABRatio,
+      searchQuery
+    );
+  }, [
+    response?.data,
+    filters.geCategory,
+    filters.department,
+    filters.timeFrame,
+    filters.multipleGE,
+    filters.ABRatio,
+    searchQuery,
+  ]);
 
-  const data = response.data;
-  const geCategory = filters.geCategory;
-  const ABRatio = filters.ABRatio;
-  const timeFrame = filters.timeFrame;
-  const department = filters.department;
-  const multipleGE = filters.multipleGE;
-
-  const filteredData: (CourseData | null)[] = fullFilter(
-    data,
-    geCategory,
-    department,
-    timeFrame,
-    multipleGE,
-    ABRatio,
-    searchQuery
-  );
+  // const isLoading = response?.ok;
 
   if (!filteredData) return;
-  // console.log(filteredData);
+  // TODO: implement loading while loading course data
   return (
     <>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
         {filteredData.length} course{filteredData.length !== 1 ? "s" : ""} found
       </Typography>
-
+      {isPending && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "30px", // adjust to match your results container
+            mb: 4,
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {filteredData.length === 0 ? (
         <Paper
           elevation={2}

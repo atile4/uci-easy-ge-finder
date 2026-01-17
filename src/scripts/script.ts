@@ -1,7 +1,7 @@
 import type { CourseData } from "../types";
 
 export const fullFilter = (
-  data: (CourseData | null)[],
+  data: (CourseData | null)[] | undefined,
   GE: string,
   dep: string,
   year: string,
@@ -9,10 +9,15 @@ export const fullFilter = (
   ABRatio: number,
   searchQuery: string
 ) => {
+  if (!data) {
+    return [];
+  }
   let filteredData = searchQuery ? filterByQuery(data, searchQuery) : [...data];
 
   filteredData = filterByGE(filteredData, GE);
-  filteredData = filterByDep(filteredData, dep);
+  if (dep !== "All Departments") {
+    filteredData = filterByDep(filteredData, dep);
+  }
   filteredData = hasOverlap ? filterByOverlap(filteredData) : filteredData;
   filteredData = filterByRatio(filteredData, ABRatio);
 

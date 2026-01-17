@@ -1,7 +1,6 @@
 import {
   Box,
   Typography,
-  // IconButton,
   TextField,
   Button,
   Paper,
@@ -16,9 +15,7 @@ import {
   Collapse,
   Grid,
 } from "@mui/material";
-import { Filter } from "lucide-react";
-import { Search } from "lucide-react";
-// import { useState } from "react";
+import { Filter, Search } from "lucide-react";
 
 import type { SearchParamType } from "../types";
 
@@ -98,7 +95,7 @@ export default function SearchParam({
                     setFilters({ ...filters, department: e.target.value })
                   }
                 >
-                  <MenuItem value="">All Departments</MenuItem>
+                  <MenuItem value="All Departments">All Departments</MenuItem>
                   {Object.entries(departments).map(([key, value]) => (
                     <MenuItem value={key}>{value}</MenuItem>
                   ))}

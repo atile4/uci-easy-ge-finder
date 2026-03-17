@@ -11,3 +11,4 @@ Helps UCI undergraduate students find easy General Education Courses to take for
 
 ## Known Issues
 - UI freezes while the course cards are being loaded
+- Login from dashboard page does not work

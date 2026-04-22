@@ -7,6 +7,7 @@ import { fullFilter } from "../scripts/script";
 import { useMemo } from "react";
 
 import { CircularProgress } from "@mui/material";
+import { initialFilter } from "../helpers/searchParamHelpers";
 
 type ResultListType = {
   data: Response | undefined;
@@ -29,7 +30,7 @@ export default function ResultsList({
       filters.timeFrame,
       filters.multipleGE,
       filters.ABRatio,
-      searchQuery
+      searchQuery,
     );
   }, [
     response?.data,
@@ -41,15 +42,20 @@ export default function ResultsList({
     searchQuery,
   ]);
 
+  const noInput =
+    searchQuery.trim() === "" &&
+    filters.geCategory === initialFilter.geCategory &&
+    filters.department === initialFilter.department &&
+    filters.timeFrame === initialFilter.timeFrame &&
+    filters.ABRatio === initialFilter.ABRatio &&
+    filters.multipleGE === initialFilter.multipleGE;
+
   // const isLoading = response?.ok;
 
   if (!filteredData) return;
   // TODO: implement loading while loading course data
   return (
     <>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-        {filteredData.length} course{filteredData.length !== 1 ? "s" : ""} found
-      </Typography>
       {isPending && (
         <Box
           sx={{
@@ -63,33 +69,55 @@ export default function ResultsList({
           <CircularProgress />
         </Box>
       )}
-      {filteredData.length === 0 ? (
-        <Paper
-          elevation={2}
-          sx={{ p: 6, textAlign: "center", borderRadius: 2 }}
-        >
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            No courses found
+      {!isPending && (
+        <>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+            {filteredData.length} course{filteredData.length !== 1 ? "s" : ""}{" "}
+            found
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Try adjusting your filters or search query
-          </Typography>
-        </Paper>
-      ) : (
-        <Grid container spacing={3}>
-          {filteredData.map((course) => {
-            if (course) {
-              return (
-                <Grid
-                  sx={{ xs: 12, lg: 6 }}
-                  key={course.courseNumber + course.department}
-                >
-                  <CourseCard course={course} />
-                </Grid>
-              );
-            }
-          })}
-        </Grid>
+          {filteredData.length === 0 ? (
+            noInput ? (
+              <Paper
+                elevation={2}
+                sx={{ p: 6, textAlign: "center", borderRadius: 2 }}
+              >
+                <Typography variant="h6" color="text.secondary" gutterBottom>
+                  Please input queries
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Enter a search query or apply filters to find courses
+                </Typography>
+              </Paper>
+            ) : (
+              <Paper
+                elevation={2}
+                sx={{ p: 6, textAlign: "center", borderRadius: 2 }}
+              >
+                <Typography variant="h6" color="text.secondary" gutterBottom>
+                  No courses found
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Try adjusting your filters or search query
+                </Typography>
+              </Paper>
+            )
+          ) : (
+            <Grid container spacing={3}>
+              {filteredData.map((course) => {
+                if (course) {
+                  return (
+                    <Grid
+                      sx={{ xs: 12, lg: 6 }}
+                      key={course.courseNumber + course.department}
+                    >
+                      <CourseCard course={course} />
+                    </Grid>
+                  );
+                }
+              })}
+            </Grid>
+          )}
+        </>
       )}
     </>
   );

@@ -32,7 +32,7 @@ export default function CourseCard({ course }: CourseCardProps) {
         <Box sx={styles.statsWrapper}>
           <Box sx={{ flex: 1 }}>
             <Typography
-              variant="h6"
+              variant="h5"
               color="secondary.main"
               fontWeight={700}
               gutterBottom

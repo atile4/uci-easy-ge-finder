@@ -24,6 +24,7 @@ import {
   departments,
   initialFilter,
 } from "../helpers/searchParamHelpers";
+import { styles } from "./SearchParam.styles";
 
 export default function SearchParam({
   searchQuery,
@@ -34,14 +35,8 @@ export default function SearchParam({
   setFilters,
 }: SearchParamType) {
   return (
-    <Box sx={{ mb: 4 }}>
-      <Box
-        sx={{
-          display: "flex",
-          gap: 2,
-          mb: 2,
-        }}
-      >
+    <Box sx={styles.wrapper}>
+      <Box sx={styles.searchRow}>
         <TextField
           fullWidth
           placeholder="Search by course code or title..."
@@ -60,33 +55,17 @@ export default function SearchParam({
           color="primary"
           startIcon={<Filter size={20} />}
           onClick={() => setShowFilters(!showFilters)}
-          sx={{
-            minWidth: { xs: "auto", sm: 140 },
-            px: { xs: 1.5, sm: 3 },
-            "& .MuiButton-startIcon": { margin: { xs: 0, sm: undefined } },
-            borderRadius: 1,
-          }}
+          sx={styles.filterButton}
         >
-          <Box
-            component="span"
-            sx={{ display: { xs: "none", sm: "inline" }, ml: 1 }}
-          >
+          <Box component="span" sx={styles.filterLabel}>
             Filters
           </Box>
         </Button>
       </Box>
 
+      {/* Filter Panel */}
       <Collapse in={showFilters}>
-        <Paper
-          elevation={0}
-          sx={{
-            p: 3,
-            borderRadius: 1,
-            border: "1px solid",
-            borderColor: "divider",
-            backgroundColor: "rgba(255,255,255,0.92)",
-          }}
-        >
+        <Paper elevation={0} sx={styles.filterPanel}>
           <Grid container spacing={3}>
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <FormControl fullWidth>

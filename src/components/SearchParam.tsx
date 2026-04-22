@@ -54,7 +54,7 @@ export default function SearchParam({
           color="primary"
           startIcon={<Filter size={20} />}
           onClick={() => setShowFilters(!showFilters)}
-          sx={{ minWidth: 140 }}
+          sx={{ minWidth: { xs: "auto", sm: 140 } }}
         >
           <Box component="span" sx={{ display: { xs: "none", sm: "inline" } }}>
             Filters
@@ -63,7 +63,6 @@ export default function SearchParam({
       </Box>
 
       {/* Filters */}
-
       <Collapse in={showFilters}>
         <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
           <Grid container spacing={3}>

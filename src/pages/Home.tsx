@@ -53,41 +53,44 @@ export default function Home() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        // p: 2,
-        background: theme.palette.background.default,
-      }}
-    >
+    <>
       <TopBar />
       <Box
-        component="main"
-        sx={{ flex: 1, p: 3, width: "100%", maxWidth: 800 }}
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          p: { xs: 2 },
+          // p: 2,
+          background: theme.palette.background.default,
+        }}
       >
-        <SearchParam
-          searchQuery={searchQuery}
-          setSearchQuery={updateSearchQuery}
-          showFilters={showFilters}
-          setShowFilters={setShowFilters}
-          filters={filters}
-          setFilters={updateFilters}
-        />
-        {response && (
-          <ResultsList
-            data={response}
-            filters={filters}
+        <Box
+          component="main"
+          sx={{ flex: 1, p: { xs: 2, sm: 3 }, width: "100%", maxWidth: 800 }}
+        >
+          <SearchParam
             searchQuery={searchQuery}
-            isPending={isPending}
+            setSearchQuery={updateSearchQuery}
+            showFilters={showFilters}
+            setShowFilters={setShowFilters}
+            filters={filters}
+            setFilters={updateFilters}
           />
-        )}
-        {isLoading && <p>Loading data...</p>}
-        {error && <p>{error.message}</p>}
+          {response && (
+            <ResultsList
+              data={response}
+              filters={filters}
+              searchQuery={searchQuery}
+              isPending={isPending}
+            />
+          )}
+          {isLoading && <p>Loading data...</p>}
+          {error && <p>{error.message}</p>}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }

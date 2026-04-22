@@ -76,12 +76,12 @@ export default function CourseCard({ course }: CourseCardProps) {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1.8fr 1fr" },
+            gridTemplateColumns: { xs: "1fr", md: "2.5fr 1fr" },
             gap: 2,
             alignItems: "stretch",
           }}
         >
-          <Box sx={{ minHeight: 190 }}>
+          <Box sx={{ minHeight: 220 }}>
             <BarChart
               xAxis={[
                 {
@@ -94,16 +94,17 @@ export default function CourseCard({ course }: CourseCardProps) {
                 },
               ]}
               series={[{ data: grades }]}
-              height={220}
+              height={260}
             />
           </Box>
 
+          {/* Stat Boxes */}
           <Box sx={{ display: "grid", gap: 2 }}>
             <Paper
               elevation={0}
               sx={{
-                p: 2,
-                borderRadius: 3,
+                p: 1.5,
+                borderRadius: 1,
                 backgroundColor: "rgba(37, 99, 235, 0.06)",
               }}
             >
@@ -114,15 +115,15 @@ export default function CourseCard({ course }: CourseCardProps) {
               >
                 Average GPA
               </Typography>
-              <Typography variant="h4" color="secondary.main" fontWeight={700}>
+              <Typography variant="h4" color="secondary.main" fontWeight={500}>
                 {course.averageGPA.toFixed(2)}
               </Typography>
             </Paper>
             <Paper
               elevation={0}
               sx={{
-                p: 2,
-                borderRadius: 3,
+                p: 1.5,
+                borderRadius: 1,
                 backgroundColor: "rgba(15, 23, 42, 0.04)",
               }}
             >
@@ -133,7 +134,7 @@ export default function CourseCard({ course }: CourseCardProps) {
               >
                 A:B Ratio
               </Typography>
-              <Typography variant="h4" color="secondary.main" fontWeight={700}>
+              <Typography variant="h4" color="secondary.main" fontWeight={500}>
                 {abRatio}%
               </Typography>
             </Paper>

@@ -79,7 +79,7 @@ export default function ResultsList({
             noInput ? (
               <Paper
                 elevation={2}
-                sx={{ p: 6, textAlign: "center", borderRadius: 2 }}
+                sx={{ p: { xs: 3, sm: 6 }, textAlign: "center", borderRadius: 2 }}
               >
                 <Typography variant="h6" color="text.secondary" gutterBottom>
                   Please input queries
@@ -91,7 +91,7 @@ export default function ResultsList({
             ) : (
               <Paper
                 elevation={2}
-                sx={{ p: 6, textAlign: "center", borderRadius: 2 }}
+                sx={{ p: { xs: 3, sm: 6 }, textAlign: "center", borderRadius: 2 }}
               >
                 <Typography variant="h6" color="text.secondary" gutterBottom>
                   No courses found

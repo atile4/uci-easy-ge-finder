@@ -38,7 +38,6 @@ export default function SearchParam({
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
           gap: 2,
           mb: 2,
         }}
@@ -61,9 +60,19 @@ export default function SearchParam({
           color="primary"
           startIcon={<Filter size={20} />}
           onClick={() => setShowFilters(!showFilters)}
-          sx={{ minWidth: { xs: "100%", sm: 140 }, px: 3 }}
+          sx={{
+            minWidth: { xs: "auto", sm: 140 },
+            px: { xs: 1.5, sm: 3 },
+            "& .MuiButton-startIcon": { margin: { xs: 0, sm: undefined } },
+            borderRadius: 1,
+          }}
         >
-          Filters
+          <Box
+            component="span"
+            sx={{ display: { xs: "none", sm: "inline" }, ml: 1 }}
+          >
+            Filters
+          </Box>
         </Button>
       </Box>
 
@@ -72,7 +81,7 @@ export default function SearchParam({
           elevation={0}
           sx={{
             p: 3,
-            borderRadius: 3,
+            borderRadius: 1,
             border: "1px solid",
             borderColor: "divider",
             backgroundColor: "rgba(255,255,255,0.92)",

@@ -57,9 +57,9 @@ export default function Home() {
       <Box
         sx={{
           minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
+          // display: "flex",
+          // justifyContent: "flex-start",
+          // flexDirection: "column",
           p: { xs: 2, sm: 3 },
           background: theme.palette.background.default,
         }}

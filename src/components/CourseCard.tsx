@@ -3,6 +3,9 @@ import { Box, Card, CardContent, Typography, Chip, Paper } from "@mui/material";
 import { BarChart } from "@mui/x-charts";
 import { geCategories } from "../helpers/searchParamHelpers";
 
+// styles
+import { styles } from "./CourseCard.styles";
+
 interface CourseCardProps {
   course: CourseData;
 }
@@ -24,29 +27,9 @@ export default function CourseCard({ course }: CourseCardProps) {
   ).toFixed(0);
 
   return (
-    <Card
-      sx={{
-        overflow: "hidden",
-        transition: "transform 0.25s, box-shadow 0.25s",
-        border: "1px solid",
-        borderColor: "divider",
-        backgroundColor: "background.paper",
-        "&:hover": {
-          transform: "translateY(-4px)",
-          boxShadow: "0 20px 40px rgba(15, 23, 42, 0.12)",
-        },
-      }}
-    >
-      <CardContent sx={{ p: 3 }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 2,
-            mb: 2,
-            alignItems: "flex-start",
-          }}
-        >
+    <Card sx={styles.wrapper}>
+      <CardContent sx={styles.content}>
+        <Box sx={styles.statsWrapper}>
           <Box sx={{ flex: 1 }}>
             <Typography
               variant="h6"
@@ -56,17 +39,13 @@ export default function CourseCard({ course }: CourseCardProps) {
             >
               {course.department} {course.courseNumber}
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+            <Box sx={styles.geCategoriesWrapper}>
               {course.geCategories.map((category) => (
                 <Chip
                   key={category}
                   label={geCategories[category] || category}
                   size="small"
-                  sx={{
-                    bgcolor: "primary.light",
-                    color: "primary.dark",
-                    fontWeight: 700,
-                  }}
+                  sx={styles.categoryTag}
                 />
               ))}
             </Box>
@@ -81,7 +60,7 @@ export default function CourseCard({ course }: CourseCardProps) {
             alignItems: "stretch",
           }}
         >
-          <Box sx={{ minHeight: 220 }}>
+          <Box sx={styles.graphWrapper}>
             <BarChart
               xAxis={[
                 {
@@ -100,18 +79,11 @@ export default function CourseCard({ course }: CourseCardProps) {
 
           {/* Stat Boxes */}
           <Box sx={{ display: "grid", gap: 2 }}>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 1.5,
-                borderRadius: 1,
-                backgroundColor: "rgba(37, 99, 235, 0.06)",
-              }}
-            >
+            <Paper elevation={0} sx={styles.statPaper}>
               <Typography
                 variant="caption"
                 color="text.secondary"
-                sx={{ textTransform: "uppercase", letterSpacing: 0.5 }}
+                sx={styles.statText}
               >
                 Average GPA
               </Typography>
@@ -119,18 +91,11 @@ export default function CourseCard({ course }: CourseCardProps) {
                 {course.averageGPA.toFixed(2)}
               </Typography>
             </Paper>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 1.5,
-                borderRadius: 1,
-                backgroundColor: "rgba(15, 23, 42, 0.04)",
-              }}
-            >
+            <Paper elevation={0} sx={styles.statPaper}>
               <Typography
                 variant="caption"
                 color="text.secondary"
-                sx={{ textTransform: "uppercase", letterSpacing: 0.5 }}
+                sx={styles.statText}
               >
                 A:B Ratio
               </Typography>

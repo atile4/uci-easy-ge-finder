@@ -62,7 +62,7 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
-          p: { xs: 1, sm: 2 },
+          p: { xs: 2 },
           // p: 2,
           background: theme.palette.background.default,
         }}

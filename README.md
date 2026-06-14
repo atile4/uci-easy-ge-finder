@@ -10,5 +10,14 @@ Helps UCI undergraduate students find easy General Education Courses to take for
 ### ⚠️This project is currently being developed. Features are limited, and errors WILL pop up.
 
 ## Known Issues
+
 - Login from dashboard page does not work
 - Login vs Github does not work
+
+## Setup
+
+1. `git clone https://github.com/atile4/uci-easy-ge-finder.git` locally
+
+2. Run `npm install` in project directory
+
+3. To run the web app use the command `npm run dev`

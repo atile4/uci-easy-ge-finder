@@ -5,7 +5,7 @@ import { useFetch as fetchData } from "../hooks/useFetch";
 import { useCallback, useState } from "react";
 
 // Components
-import TopBar from "../components/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import SearchParam from "../components/SearchParam";
 
 // Hooks
@@ -15,10 +15,9 @@ import { useTransition } from "react";
 import { initialFilter } from "../helpers/searchParamHelpers";
 import type { FilterParams } from "../types";
 
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, Typography } from "@mui/material";
 import type { Response } from "../types";
 import ResultsList from "../components/ResultsList";
-// import MenuIcon from "@mui/icons-material/Menu";
 
 const url = "https://anteaterapi.com/v2/rest/grades/raw";
 
@@ -58,18 +57,20 @@ export default function Home() {
       <Box
         sx={{
           minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          p: { xs: 2 },
-          // p: 2,
+          // display: "flex",
+          // justifyContent: "flex-start",
+          // flexDirection: "column",
+          p: { xs: 2, sm: 3 },
           background: theme.palette.background.default,
         }}
       >
         <Box
           component="main"
-          sx={{ flex: 1, p: { xs: 2, sm: 3 }, width: "100%", maxWidth: 800 }}
+          sx={{
+            width: "100%",
+            maxWidth: 960,
+            mx: "auto",
+          }}
         >
           <SearchParam
             searchQuery={searchQuery}
@@ -79,6 +80,7 @@ export default function Home() {
             filters={filters}
             setFilters={updateFilters}
           />
+
           {response && (
             <ResultsList
               data={response}
@@ -87,8 +89,16 @@ export default function Home() {
               isPending={isPending}
             />
           )}
-          {isLoading && <p>Loading data...</p>}
-          {error && <p>{error.message}</p>}
+          {isLoading && (
+            <Typography color="text.secondary" sx={{ mt: 2 }}>
+              Loading data...
+            </Typography>
+          )}
+          {error && (
+            <Typography color="error" sx={{ mt: 2 }}>
+              {error.message}
+            </Typography>
+          )}
         </Box>
       </Box>
     </>

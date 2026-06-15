@@ -24,6 +24,7 @@ import {
   departments,
   initialFilter,
 } from "../helpers/searchParamHelpers";
+import { styles } from "./SearchParam.styles";
 
 export default function SearchParam({
   searchQuery,
@@ -34,8 +35,8 @@ export default function SearchParam({
   setFilters,
 }: SearchParamType) {
   return (
-    <Box sx={{ mb: 3 }}>
-      <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+    <Box sx={styles.wrapper}>
+      <Box sx={styles.searchRow}>
         <TextField
           fullWidth
           placeholder="Search by course code or title..."
@@ -44,27 +45,27 @@ export default function SearchParam({
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Search size={20} color="#7dd3fc" />
+                <Search size={20} color="#2563eb" />
               </InputAdornment>
             ),
           }}
         />
         <Button
-          // variant={hasActiveFilters ? "contained" : "outlined"}
+          variant="contained"
           color="primary"
           startIcon={<Filter size={20} />}
           onClick={() => setShowFilters(!showFilters)}
-          sx={{ minWidth: { xs: "auto", sm: 140 } }}
+          sx={styles.filterButton}
         >
-          <Box component="span" sx={{ display: { xs: "none", sm: "inline" } }}>
+          <Box component="span" sx={styles.filterLabel}>
             Filters
           </Box>
         </Button>
       </Box>
 
-      {/* Filters */}
+      {/* Filter Panel */}
       <Collapse in={showFilters}>
-        <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+        <Paper elevation={0} sx={styles.filterPanel}>
           <Grid container spacing={3}>
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <FormControl fullWidth>
@@ -78,7 +79,9 @@ export default function SearchParam({
                 >
                   <MenuItem value="All">All Categories</MenuItem>
                   {Object.entries(geCategories).map(([key, value]) => (
-                    <MenuItem value={key}>{value}</MenuItem>
+                    <MenuItem key={key} value={key}>
+                      {value}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -96,7 +99,9 @@ export default function SearchParam({
                 >
                   <MenuItem value="All Departments">All Departments</MenuItem>
                   {Object.entries(departments).map(([key, value]) => (
-                    <MenuItem value={key}>{value}</MenuItem>
+                    <MenuItem key={key} value={key}>
+                      {value}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -137,7 +142,7 @@ export default function SearchParam({
               />
             </Grid>
 
-            <Grid size={{ xs: 8, sm: 6, md: 4 }}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -156,7 +161,7 @@ export default function SearchParam({
           <Button
             onClick={() => setFilters(initialFilter)}
             color="primary"
-            sx={{ mt: 2 }}
+            sx={{ mt: 3 }}
           >
             Clear All Filters
           </Button>

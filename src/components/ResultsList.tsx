@@ -79,7 +79,11 @@ export default function ResultsList({
             noInput ? (
               <Paper
                 elevation={2}
-                sx={{ p: { xs: 3, sm: 6 }, textAlign: "center", borderRadius: 2 }}
+                sx={{
+                  p: { xs: 3, sm: 6 },
+                  textAlign: "center",
+                  borderRadius: 2,
+                }}
               >
                 <Typography variant="h6" color="text.secondary" gutterBottom>
                   Please input queries
@@ -91,7 +95,11 @@ export default function ResultsList({
             ) : (
               <Paper
                 elevation={2}
-                sx={{ p: { xs: 3, sm: 6 }, textAlign: "center", borderRadius: 2 }}
+                sx={{
+                  p: { xs: 3, sm: 6 },
+                  textAlign: "center",
+                  borderRadius: 2,
+                }}
               >
                 <Typography variant="h6" color="text.secondary" gutterBottom>
                   No courses found
@@ -107,7 +115,7 @@ export default function ResultsList({
                 if (course) {
                   return (
                     <Grid
-                      sx={{ xs: 12, lg: 6 }}
+                      size={{ xs: 12, lg: 6 }}
                       key={course.courseNumber + course.department}
                     >
                       <CourseCard course={course} />

@@ -3,37 +3,40 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#0ea5e9", // sky-500
-      light: "#7dd3fc", // sky-300
-      dark: "#0284c7", // sky-600
+      main: "#2563eb",
+      light: "#7dd3fc",
+      dark: "#1d4ed8",
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#0c4a6e", // sky-900
-      light: "#075985", // sky-800
-      dark: "#082f49", // sky-950
+      main: "#0f172a",
+      light: "#e2e8f0",
+      dark: "#020617",
       contrastText: "#ffffff",
     },
     background: {
-      default: "#f0f9ff", // sky-50
+      default: "#f8fafc",
       paper: "#ffffff",
     },
     text: {
-      primary: "#0c4a6e", // sky-900
-      secondary: "#075985", // sky-800
+      primary: "#111827",
+      secondary: "#475569",
     },
     success: {
-      main: "#10b981", // green for A grades
+      main: "#22c55e",
     },
     info: {
-      main: "#3b82f6", // blue for B grades
+      main: "#38bdf8",
     },
     warning: {
-      main: "#f59e0b", // orange for C grades
+      main: "#f97316",
     },
     error: {
-      main: "#ef4444", // red for D/F grades
+      main: "#ef4444",
     },
+  },
+  shape: {
+    borderRadius: 16,
   },
   typography: {
     fontFamily: [
@@ -45,20 +48,45 @@ export const theme = createTheme({
       "Arial",
       "sans-serif",
     ].join(","),
+    button: {
+      textTransform: "none",
+    },
   },
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#ffffff",
+          color: "#0f172a",
+          boxShadow: "0 8px 24px rgba(15, 23, 42, 0.08)",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#ffffff",
+          border: "1px solid rgba(15, 23, 42, 0.06)",
+          boxShadow: "0 12px 30px rgba(15, 23, 42, 0.05)",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: "none",
-          borderRadius: 8,
+          borderRadius: 999,
+          fontWeight: 600,
+          boxShadow: "none",
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          borderRadius: 20,
+          boxShadow: "0 12px 30px rgba(15, 23, 42, 0.06)",
+          border: "1px solid rgba(15, 23, 42, 0.06)",
         },
       },
     },
@@ -66,8 +94,27 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-root": {
-            borderRadius: 8,
+            borderRadius: 16,
+            backgroundColor: "#f8fafc",
+            borderColor: "rgba(15, 23, 42, 0.08)",
+            "& fieldset": {
+              borderColor: "rgba(15, 23, 42, 0.12)",
+            },
+            "&:hover fieldset": {
+              borderColor: "#2563eb",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#2563eb",
+            },
           },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: 999,
+          fontWeight: 700,
         },
       },
     },
